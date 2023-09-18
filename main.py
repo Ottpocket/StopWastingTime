@@ -13,8 +13,8 @@ from CourseCorrect import CourseCorrectCoR
 
 
 whitelist = WhiteListCor('base')
-website_checker = CheckWebsitesCoR('base')
-course_correction = CourseCorrectCoR('delete')
+website_checker = CheckWebsitesCoR().get_object('base')
+course_correction = CourseCorrectCoR().get_object('delete')
 
 while True:
   if whitelist.website_in_whitelist(website_checker.get_current_websites()):
