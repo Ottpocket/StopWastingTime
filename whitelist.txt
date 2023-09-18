@@ -1,6 +1,6 @@
 # add good websites here 
 
-google.com,
-cloud.google.com,
-outlook,
-stackoverflow.com,
+google.com
+cloud.google.com
+outlook
+stackoverflow.com
