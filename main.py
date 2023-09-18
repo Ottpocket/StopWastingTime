@@ -18,8 +18,8 @@ course_correction = CourseCorrectCoR().get_object('delete')
 
 while True:
   if whitelist.website_in_whitelist(website_checker.get_current_websites()):
-    course_correction.course_correct()
-  else:
     pass
+  else:
+    course_correction.course_correct()
 
   time.sleep(1.)
