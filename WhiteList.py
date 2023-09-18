@@ -36,7 +36,21 @@ class WhiteListFromTxt(WhiteList):
   """ creates the whitelist of whitelist.txt """
 
   def create_whitelist(self):
-    pass
+    with open("whitelist.txt", "r") as filestream:
+      for line in filestream:
+        good_lines = []
+        for line in lines:
+          line = line.strip()
+    
+          if len(line) == 0:
+            pass
+          elif line[0] == '#':
+            pass
+          elif line == '':
+            pass
+          else:
+            good_lines.append(line)
+    return good_lines
 
 class WhiteListTest(WhiteList):
   """ Only for testing code.  Not for prod """
