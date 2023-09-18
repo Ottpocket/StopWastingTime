@@ -16,6 +16,8 @@ class CourseCorrectCoR:
       return DeleteAllCourseCorrect()
     elif type_of_factory == "delete_all":
       return DeleteAllCourseCorrect()
+    elif type_of_factory == 'test':
+      return TestCourseCorrect()
     else:
       raise Exception(f'Invalid Param for CourseCorrect factory.')
 
@@ -36,4 +38,8 @@ class DeleteAllCourseCorrect(CourseCorrect):
         os.system(f"taskkill /im {browser}.exe /f")
       except e:
         #If the browser is not running, will throw an exception.  
-        pass        
+        pass       
+
+class TestCourseCorrect(CourseCorrect):
+  def course_correct(self):
+    print('Course Correcting!')
