@@ -8,12 +8,10 @@ How does the StopWastingTime app work?
 """
 import sleep
 from WhiteList import WhiteListCoR
-from CheckWebsites import CheckWebsitesCoR
 from CourseCorrect import CourseCorrectCoR
 
 
 whitelist = WhiteListCor('base')
-website_checker = CheckWebsitesCoR().get_object('base')
 course_correction = CourseCorrectCoR().get_object('delete')
 
 while True:
