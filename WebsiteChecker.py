@@ -36,11 +36,12 @@ class WebsiteCheckerHistory(WebsiteChecker):
     #https://www.sans.org/blog/google-chrome-forensics/
     conn = sqlite3.connect(self.chrome_history_database)
     cursor = conn.cursor()
-    query = "SELECT * FROM visits LIMIT 4"
+    query = "SELECT title, last_visit_time FROM urls LIMIT 4"
     cursor.execute(query)
     output = cursor.fetchall()
     for row in output:
       print(row)
+    conn.close()
     
 
 class WebsiteCheckerTest(WebsiteChecker):
