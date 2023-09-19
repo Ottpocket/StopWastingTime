@@ -29,10 +29,19 @@ class WebsiteCheckerHistory(WebsiteChecker):
   NOTE: this assumes windows and only looks at Chrome
   """
   self.user = os.getlogin()
-  self.chrome_history = f"C:\\Users\\{self.user}\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\History"
+  self.chrome_history_database = f"C:\\Users\\{self.user}\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\History"
   self.pgm_start = time.time()
   def get_current_websites(self):
-    pass
+    #https://www.geeksforgeeks.org/python-sqlite-select-data-from-table/
+    #https://www.sans.org/blog/google-chrome-forensics/
+    conn = sqlite3.connect(self.chrome_history_database)
+    cursor = conn.cursor()
+    query = "SELECT * FROM visits LIMIT 4"
+    cursor.execute(query)
+    output = cursor.fetchall()
+    for row in output:
+      print(row)
+    
 
 class WebsiteCheckerTest(WebsiteChecker):
   """ Test class for debugging """
