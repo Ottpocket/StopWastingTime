@@ -1,0 +1,3 @@
+# List of ideas for completing this task
+
+location of history dataset: C:\Users\{user_name}\AppData\Local\Google\Chrome\User Data\Default
