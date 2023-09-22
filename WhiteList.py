@@ -2,10 +2,11 @@
 Class for good websites
 """
 from abc import ABC, abstractmethod
+import sys
+sys.path.append('GetPids')
+from GetPids import GetPidsFactory
 
-def get_pids(browser):
-  """ returns a list of all pids for a browser
-   GetPidsFactory().get_object().get_pids(browser=browser)"""
+
 
 
 class WhiteListCoR:
