@@ -7,19 +7,23 @@ How does the StopWastingTime app work?
   2a)If so, closes all internet browsers
 """
 import sleep
+import sys
+for directory in ['GetPids', 'TimedIterator', 'WebsiteChecker']:
+  sys.path.append(directory)
 from WhiteList import WhiteListCoR
 from CourseCorrect import CourseCorrectCoR
 from WebsiteChecker import WebsiteCheckerCoR
 from TimedIterator import TimedIteratorCoR
 
 
-whitelist = WhiteListCor('base')
-course_correction = CourseCorrectCoR().get_object('delete')
-website_checker = WebsiteCheckerCoR().get_object('pids') #TODO: write this!
-timed_iterator = TimedIteratorCoR().get_object('base') #TODO: write this
+whitelist = WhiteListCor('pids')
+website_checker = WebsiteCheckerCoR().get_object('pids')
+course_correction = CourseCorrectCoR().get_object('popup')
+timed_iterator = TimedIteratorCoR().get_object(15) 
 
 for timed_iterator:
   message =  whitelist.website_in_whitelist(website_checker.get_current_websites())
   if message.course_correction_needed():
     course_correction.course_correct(message)
+    whitelist.update()
 
