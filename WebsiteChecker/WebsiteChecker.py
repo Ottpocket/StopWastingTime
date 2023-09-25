@@ -10,6 +10,7 @@ from abc import ABC, abstractmethod
 import os
 import sqlite3
 import time
+from GetPids import GetPidsFactory
 
 class WebsiteChecker(ABC):
   """ Checks current websites """
@@ -53,6 +54,16 @@ class WebsiteCheckerTest(WebsiteChecker):
     else:
       return sites
 
+class WebsiteCheckerPids(WebsiteChecker):
+  """ Outputs current pids  """
+  def __init__(self):
+    self.pids_getter = GetPidsFactory()
+
+  def get_current_websites(self)
+    website_pid_dict = {}
+    for browser in ['firefox', 'chrome', 'msedge']:
+      website_pid_dict [browser] = self.pids_getter.get_pids(browser=browser)
+    return website_pid_dict 
 
 class WebsiteCheckerCoR:
   """Chain of responsibility for WebsiteChecker object creation """
@@ -62,3 +73,5 @@ class WebsiteCheckerCoR:
       return WebsiteCheckerOnline()
     elif type_of_object == 'test':
       return WebsiteCheckerTest()
+    elif type_of_object == "pids"
+      return WebsiteCheckerPids()
