@@ -20,6 +20,6 @@ timed_iterator = TimedIteratorCoR().get_object('base') #TODO: write this
 
 for timed_iterator:
   message =  whitelist.website_in_whitelist(website_checker.get_current_websites())
-  if message.need_course_correction():
+  if message.course_correction_needed():
     course_correction.course_correct(message)
 
