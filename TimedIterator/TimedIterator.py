@@ -27,7 +27,6 @@ class TimedIterator(ABC):
   def iteration_logic(self):
     pass
 
-  def update_iterator(
 
 class TimedIteratorInfinite(TimedIterator):
   """
