@@ -7,7 +7,7 @@ How does the StopWastingTime app work?
   2a)If so, closes all internet browsers
 """
 import sys
-for directory in ['WhiteList_', 'CourseCorrect', 'TimedIterator', 'WebsiteChecker']:
+for directory in ['WhiteList', 'CourseCorrect', 'TimedIterator', 'WebsiteChecker']:
   sys.path.append(directory)
 from WhiteList import WhiteListCoR
 from CourseCorrect import CourseCorrectCoR
