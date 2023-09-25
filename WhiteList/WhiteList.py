@@ -62,6 +62,9 @@ class WhiteListFromPids(WhiteList):
         browser_site_dict[browser] = super().website_in_whitelist(list_of_current_sites, whitelist_sites)
     return Message(browser_site_dict)
 
+  def update(self):
+    self.whitelist = self.create_whitelist()
+
 class WhiteListFromTxt(WhiteList):
   """ creates the whitelist of whitelist.txt """
 
