@@ -9,15 +9,17 @@ How does the StopWastingTime app work?
 import sleep
 from WhiteList import WhiteListCoR
 from CourseCorrect import CourseCorrectCoR
+from WebsiteChecker import WebsiteCheckerCoR
+from TimedIterator import TimedIteratorCoR
 
 
 whitelist = WhiteListCor('base')
 course_correction = CourseCorrectCoR().get_object('delete')
+website_checker = WebsiteCheckerCoR().get_object('pids') #TODO: write this!
+timed_iterator = TimedIteratorCoR().get_object('base') #TODO: write this
 
-while True:
-  if whitelist.website_in_whitelist(website_checker.get_current_websites()):
-    pass
-  else:
-    course_correction.course_correct()
+for timed_iterator:
+  message =  whitelist.website_in_whitelist(website_checker.get_current_websites())
+  if message.need_course_correction():
+    course_correction.course_correct(message)
 
-  time.sleep(1.)
