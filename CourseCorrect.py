@@ -18,6 +18,8 @@ class CourseCorrectCoR:
       return DeleteAllCourseCorrect()
     elif type_of_factory == 'test':
       return TestCourseCorrect()
+    elif type_of_factory == 'pids':
+      return PidsCourseCorrect()
     else:
       raise Exception(f'Invalid Param for CourseCorrect factory.')
 
@@ -25,14 +27,15 @@ class CourseCorrect(ABC):
   """ Abstract class for dealing with user wasting time on internet"""
 
   @abstractmethod
-  def course_correct(self):
+  def course_correct(self, message):
+  """ Accepts object of Message class"""
     pass
 
 
 class DeleteAllCourseCorrect(CourseCorrect):
   """ Deletes all websites on all browsers """
 
-  def course_correct(self):
+  def course_correct(self, message):
     for browser in ['firefox', 'chrome']:
       try:
         os.system(f"taskkill /im {browser}.exe /f")
@@ -40,6 +43,14 @@ class DeleteAllCourseCorrect(CourseCorrect):
         #If the browser is not running, will throw an exception.  
         pass       
 
+class PidsCourseCorrect(CourseCorrect):
+  """ deletes all pids from message """
+  
+  def course_correct(self, message):
+    for browser, pid_list in message.message.items():
+      if len(pid_list) > 0:
+        print(f'{browser} browser: deleting pids {pid_list}')
+        
 class TestCourseCorrect(CourseCorrect):
   def course_correct(self):
     print('Course Correcting!')
