@@ -5,22 +5,10 @@ from abc import ABC, abstractmethod
 import sys
 sys.path.append('GetPids')
 from GetPids import GetPidsFactory
+sys.path.append('Message')
+from Message import Message
 
 
-
-
-class WhiteListCoR:
-  """ Chain of Responsibility to get correct WhiteList Object"""
-  
-  def get_object(self, factory_type):
-    if factory_type == 'base':
-      return WhiteListFromTxt()
-    elif factory_type == 'test':
-      return WhiteListTest()
-    elif factory_type == 'pids':
-      return WhiteListPids()
-    else:
-      raise Exception(f'{factory_type} not a proper parameter to create WhiteList object.')
 
 class WhiteList(ABC):
   """ Creates a list of strings of good websites for browsing"""
@@ -33,11 +21,20 @@ class WhiteList(ABC):
 
   def website_in_whitelist(self, list_of_current_sites, whitelist_sites):
     """ checks if all current sites in whitelist """
+    """
     bad_sites = []
     for site in list_of_current_sites:
-      if sum([sum([white_site.upper().startswith(site.upper()) for white_site in whitelist_sites])]) ==0:
+      if type(site) == str:
+        bad_site_found = sum([sum([white_site.upper().startswith(site.upper()) for white_site in whitelist_sites])]) ==0
+      elif type(site) == int:
+        bad_site_found = sum([sum([white_site == site for white_site in whitelist_sites])]) ==0
+
+      if bad_site_found:
         print(f'{site} not found in whitelist')
         bad_sites.append(site)
+      """
+    bad_sites = list(set(list_of_current_sites) - set(whitelist_sites))
+    print(f'{bad_sites} not found in whitelist')
     return bad_sites
 
 class WhiteListFromPids(WhiteList):
@@ -54,6 +51,16 @@ class WhiteListFromPids(WhiteList):
     whitelist = {}
     for browser in ['firefox', 'chrome', 'msedge']:
       whitelist[browser] = GetPidsFactory().get_object().get_pids(browser=browser)
+    return whitelist
+
+  def website_in_whitelist(self, dict_of_current_sites):
+    """ checks each browser has new pids """
+    browser_site_dict = {}
+    for browser, whitelist_sites in self.whitelist.items():
+      if browser in dict_of_current_sites.keys():
+        list_of_current_sites = dict_of_current_sites[browser]
+        browser_site_dict[browser] = super().website_in_whitelist(list_of_current_sites, whitelist_sites)
+    return Message(browser_site_dict)
 
 class WhiteListFromTxt(WhiteList):
   """ creates the whitelist of whitelist.txt """
@@ -80,3 +87,18 @@ class WhiteListTest(WhiteList):
   
   def create_whitelist(self, **kwargs):
     return ['cow.cow', 'google.com']
+
+
+class WhiteListCoR:
+  """ Chain of Responsibility to get correct WhiteList Object"""
+  
+  def get_object(self, factory_type):
+    if factory_type == 'base':
+      return WhiteListFromTxt()
+    elif factory_type == 'test':
+      return WhiteListTest()
+    elif factory_type == 'pids':
+      return WhiteListFromPids()
+    else:
+      raise Exception(f'{factory_type} not a proper parameter to create WhiteList object.')
+

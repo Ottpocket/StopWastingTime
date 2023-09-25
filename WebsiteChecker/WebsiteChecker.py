@@ -8,8 +8,9 @@ checker.get_current_websites()
 """
 from abc import ABC, abstractmethod
 import os
-import sqlite3
 import time
+import sys
+sys.path.append('GetPids')
 from GetPids import GetPidsFactory
 
 class WebsiteChecker(ABC):
@@ -25,6 +26,9 @@ class WebsiteCheckerOnline(WebsiteChecker):
   def get_current_websites(self):
     pass    
 
+'''
+WILL NOT WORK FOR OPEN TABS. DEFUNCT
+import sqlite3
 class WebsiteCheckerHistory(WebsiteChecker):
   """ Looks at local History sqlite3 database to check history.
   NOTE: this assumes windows and only looks at Chrome
@@ -43,7 +47,7 @@ class WebsiteCheckerHistory(WebsiteChecker):
     for row in output:
       print(row)
     conn.close()
-    
+'''    
 
 class WebsiteCheckerTest(WebsiteChecker):
   """ Test class for debugging """
@@ -57,12 +61,12 @@ class WebsiteCheckerTest(WebsiteChecker):
 class WebsiteCheckerPids(WebsiteChecker):
   """ Outputs current pids  """
   def __init__(self):
-    self.pids_getter = GetPidsFactory()
+    self.pids_getter = GetPidsFactory().get_object()
 
-  def get_current_websites(self)
+  def get_current_websites(self):
     website_pid_dict = {}
     for browser in ['firefox', 'chrome', 'msedge']:
-      website_pid_dict [browser] = self.pids_getter.get_pids(browser=browser)
+      website_pid_dict[browser] = self.pids_getter.get_pids(browser=browser)
     return website_pid_dict 
 
 class WebsiteCheckerCoR:
@@ -73,5 +77,5 @@ class WebsiteCheckerCoR:
       return WebsiteCheckerOnline()
     elif type_of_object == 'test':
       return WebsiteCheckerTest()
-    elif type_of_object == "pids"
+    elif type_of_object == "pids":
       return WebsiteCheckerPids()

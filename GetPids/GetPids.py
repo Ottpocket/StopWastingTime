@@ -5,7 +5,7 @@ import platform
 from abc import ABC, abstractmethod
 import subprocess
 
-GetPidsFactory().get_object().get_pids(browser=browser)
+
 
 class GetPids(ABC):
   """ Abstract class to get all running pids from a browser"""
@@ -33,14 +33,14 @@ class GetPidsWindows(GetPids):
           pid = int(pid)
           pids.append(pid)
         except ValueError:
-          print(f'{pid} is string')
+          pass
     return pids
 
 class GetPidsFactory:
   """ Factory method """
   def get_object(self):
-    if platform.system() == "Windows"
-      return GetPidsWindows():
+    if platform.system() == "Windows":
+      return GetPidsWindows()
     else:
       msg= """
       ERROR:
