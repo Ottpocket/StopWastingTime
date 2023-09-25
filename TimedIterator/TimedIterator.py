@@ -21,7 +21,7 @@ class TimedIterator(ABC):
   def __next__(self):
     sleep(self.wait_seconds)
     self.iteration_counter += 1
-    self.iteration_logic()
+    return self.iteration_logic()
   
   @abstractmethod
   def iteration_logic(self):
