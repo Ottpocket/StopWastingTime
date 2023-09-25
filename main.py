@@ -16,14 +16,14 @@ from TimedIterator import TimedIteratorCoR
 
 
 
-whitelist = WhiteListCor().get_object()('pids')
+whitelist = WhiteListCoR().get_object('pids')
 website_checker = WebsiteCheckerCoR().get_object('pids')
-course_correction = CourseCorrectCoR().get_object('popup')
-timed_iterator = TimedIteratorCoR().get_object(15) 
+course_correction = CourseCorrectCoR().get_object('pids')
+timed_iterator = TimedIteratorCoR().get_object(8 * 60 * 60) #~8 hours 
 
 for _ in timed_iterator:
   message =  whitelist.website_in_whitelist(website_checker.get_current_websites())
-  if message.course_correction_needed():
+  if message.course_correction_needed:
     course_correction.course_correct(message)
-    whitelist.update()
+    timed_iterator.inform_on_intervals()
 

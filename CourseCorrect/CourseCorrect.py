@@ -67,8 +67,8 @@ class CourseCorrectPopUp(CourseCorrect):
       msg += f'{browser}: {pids}\n'
 
     self.Mbox(title= 'Warning!', text=msg)  
-  def Mbox(self, title, text, style=1):
-    return ctypes.windll.user32.MessageBoxW(0, text, title, style)
+  def Mbox(self, title, text, style= 0x40000):
+    return ctypes.windll.user32.MessageBoxW(None, text, title, style)
   
 
         

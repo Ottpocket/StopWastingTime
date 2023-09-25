@@ -20,7 +20,9 @@ class WhiteList(ABC):
     pass
 
   def website_in_whitelist(self, list_of_current_sites, whitelist_sites):
-    """ checks if all current sites in whitelist """
+    """ checks if all current sites in whitelist 
+    Only works for pids.  Websites does not work as intended
+    """
     """
     bad_sites = []
     for site in list_of_current_sites:
@@ -30,11 +32,11 @@ class WhiteList(ABC):
         bad_site_found = sum([sum([white_site == site for white_site in whitelist_sites])]) ==0
 
       if bad_site_found:
-        print(f'{site} not found in whitelist')
+        #print(f'{site} not found in whitelist')
         bad_sites.append(site)
       """
     bad_sites = list(set(list_of_current_sites) - set(whitelist_sites))
-    print(f'{bad_sites} not found in whitelist')
+    #print(f'{bad_sites} not found in whitelist')
     return bad_sites
 
 class WhiteListFromPids(WhiteList):

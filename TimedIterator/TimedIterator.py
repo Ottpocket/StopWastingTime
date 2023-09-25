@@ -26,7 +26,9 @@ class TimedIterator(ABC):
   @abstractmethod
   def iteration_logic(self):
     pass
-
+  
+  def inform_on_intervals(self):
+    pass
 
 class TimedIteratorInfinite(TimedIterator):
   """
@@ -49,6 +51,11 @@ class TimedIteratorSeconds(TimedIterator):
       return self.iteration_counter
     else:
       raise StopIteration
+
+  def inform_on_intervals(self):
+    if self.iteration_counter % 5 == 0:
+      pct = self.iteration_counter / self.num_iterations
+      print(f'{pct}% complete')
 
 class TimedIteratorCoR:
   """
