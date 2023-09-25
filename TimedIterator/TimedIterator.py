@@ -58,4 +58,4 @@ class TimedIteratorCoR:
     if num_seconds < 0:
       return TimedIteratorInfinite()
     else:
-      return TimedIteratorSeconds(num_seconds)
+      return TimedIteratorSeconds(wait_seconds=1, total_seconds_to_iterate = num_seconds)
