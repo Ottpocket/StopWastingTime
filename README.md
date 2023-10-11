@@ -20,4 +20,9 @@ This will start the program for 8 hours.  If you desire to terminate it before t
 Unless the Lord builds the house/pgm, they labor in vain who build it.
 Unless the Lord guards the city/browser, the watchmen stay awake in vain.
 
-### To Fix
+### Next Steps
+1) Make this app a gui for ease of use.
+2) Inside gui, have **Halt for N minutes** option: 
+2a) pgm saves PIDS
+2b) halts the deletion for N minutes
+2c) after N minutes, it takes N minutes to repeat this process
