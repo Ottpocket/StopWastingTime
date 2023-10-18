@@ -26,3 +26,5 @@ Unless the Lord guards the city/browser, the watchmen stay awake in vain.
 2a) pgm saves PIDS
 2b) halts the deletion for N minutes
 2c) after N minutes, it takes N minutes to repeat this process
+
+Alternative: Find out how to install selenium and get back to that sweet sweet whitelist https://www.geeksforgeeks.org/opening-and-closing-tabs-using-selenium/
