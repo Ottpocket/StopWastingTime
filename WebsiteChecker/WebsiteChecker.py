@@ -9,9 +9,7 @@ checker.get_current_websites()
 from abc import ABC, abstractmethod
 import os
 import time
-import sys
-sys.path.append('GetPids')
-from GetPids import GetPidsFactory
+from StopWastingTime.GetPids.GetPids import GetPidsFactory
 
 class WebsiteChecker(ABC):
   """ Checks current websites """

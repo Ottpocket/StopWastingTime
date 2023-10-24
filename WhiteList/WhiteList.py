@@ -3,10 +3,8 @@ Class for good websites
 """
 from abc import ABC, abstractmethod
 import sys
-sys.path.append('GetPids')
-from GetPids import GetPidsFactory
-sys.path.append('Message')
-from Message import Message
+from StopWastingTime.GetPids.GetPids import GetPidsFactory
+from StopWastingTime.Message.Message import Message
 
 
 
