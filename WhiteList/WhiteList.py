@@ -2,7 +2,6 @@
 Class for good websites
 """
 from abc import ABC, abstractmethod
-import sys
 from StopWastingTime.GetPids.GetPids import GetPidsFactory
 from StopWastingTime.Message.Message import Message
 
